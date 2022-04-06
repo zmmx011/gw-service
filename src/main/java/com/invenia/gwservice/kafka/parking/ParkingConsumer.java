@@ -36,6 +36,7 @@ public class ParkingConsumer extends AbstractConsumerSeekAware {
   }
 
   private void sendParkingControlMessage(ParkingPayload payload) {
+    log.debug("User Payload ==> " + payload);
     Message message = Message.builder()
         .channelId("zr36ab6x63nmzb3xbybbd1rw4o")
         .props(Props.builder()
