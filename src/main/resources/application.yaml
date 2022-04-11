@@ -3,7 +3,7 @@ server:
   port: 8011
 spring:
   config:
-    import: "optional:configserver:"
+    import: "optional:configserver:http://configserver:8888"
   application:
     name: gw-service
   rabbitmq:
