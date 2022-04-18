@@ -6,17 +6,17 @@ import lombok.Data;
 @Data
 public class Notice {
 
-  private Integer boardno;
+  private Integer boardNo;
 
-  private Integer boardinfono;
+  private Integer boardInfoNo;
 
   private String title;
 
-  private String username;
+  private String userName;
 
-  private String deptname;
+  private String deptName;
 
-  private String rankname;
+  private String rankName;
 
   private String security;
 
@@ -26,45 +26,45 @@ public class Notice {
 
   private String type;
 
-  private Date registdate;
+  private Date registerDate;
 
   private Integer hit;
 
-  private String attachyn;
+  private String attachYN;
 
-  private String reservationyn;
+  private String reservationYN;
 
-  private Date modifydate;
+  private Date modifyDate;
 
-  private String userid;
+  private String userId;
 
-  private String startdate;
+  private String startDate;
 
-  private String enddate;
+  private String endDate;
 
-  private String userno;
+  private String userNo;
 
-  private String fileno;
+  private String fileNo;
 
-  private String noticeyn;
+  private String noticeYN;
 
-  private String activeyn;
+  private String activeYN;
 
   private String tag;
 
-  private String contentmode;
+  private String contentMode;
 
-  private String entrydate;
+  private String entryDate;
 
-  private String entrydept;
+  private String entryDept;
 
-  private String fixview;
+  private String fixView;
 
-  private String noticestartdate;
+  private String noticeStartDate;
 
-  private String noticeenddate;
+  private String noticeEndDate;
 
-  private String noticereserveyn;
+  private String noticeReserveYN;
 
-  private String loginyn;
+  private String loginYN;
 }
