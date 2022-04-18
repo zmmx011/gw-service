@@ -24,7 +24,6 @@ spring:
   datasource:
     hikari:
       connection-test-query: "SELECT * FROM IPLIST" # JDBC 4.0 미지원으로 인해 강제 변경
-
   security:
     oauth2:
       resourceserver:
