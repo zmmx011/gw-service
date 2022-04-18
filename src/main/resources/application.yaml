@@ -1,6 +1,7 @@
 # Default settings
 server:
   port: 8011
+
 spring:
   config:
     import: "optional:configserver:http://configserver:8888"
@@ -17,11 +18,18 @@ spring:
         - eth0*
         - eth2*
     config:
+      fail-fast: true # 실패시 재시도
       discovery:
         enabled: true # 유레카에서 검색
   datasource:
     hikari:
       connection-test-query: "SELECT * FROM IPLIST" # JDBC 4.0 미지원으로 인해 강제 변경
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://sso.inveniacorp.com/auth/realms/service
 
 mybatis:
   configuration:
@@ -36,6 +44,7 @@ management:
   health:
     diskspace:
       enabled: true
+
 eureka:
   client:
     registerWithEureka: true # 유레카에 서비스 등록

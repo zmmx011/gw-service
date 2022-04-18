@@ -1,10 +1,10 @@
-package com.invenia.gwservice.api.board;
+package com.invenia.gwservice.api.notice;
 
 import java.util.Date;
 import lombok.Data;
 
 @Data
-public class Board {
+public class Notice {
 
   private Integer boardno;
 
@@ -48,25 +48,15 @@ public class Board {
 
   private String noticeyn;
 
-  private String cacdate;
-
   private String activeyn;
-
-  private Date senddate;
-
-  private String contentmode;
 
   private String tag;
 
-  private Integer agreecnt;
-
-  private Integer opposecnt;
-
-  private String link;
-
-  private String linkcontent;
+  private String contentmode;
 
   private String entrydate;
+
+  private String entrydept;
 
   private String fixview;
 
@@ -75,4 +65,6 @@ public class Board {
   private String noticeenddate;
 
   private String noticereserveyn;
+
+  private String loginyn;
 }
