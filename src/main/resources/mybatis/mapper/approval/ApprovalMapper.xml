@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.invenia.gwservice.api.approval.ApprovalMapper">
+  <select id="selectInProgressCountById" resultType="Integer">
+    SELECT COUNT(APPDOCNO)
+    FROM APPDOCREPOSITORY
+    WHERE DOCUMENTSTATECODE = 'INPROGRESS'
+    AND DRAFTERUSERID = #{id}
+  </select>
+  <select id="selectUnreadReturnCountById" resultType="Integer">
+    SELECT COUNT(appDocNo) as unreadReturnCount
+    FROM APPBOXRETURNDRAFT
+    WHERE userNo =
+    (SELECT userNo
+    FROM USERBASE
+    WHERE COMPANYNUM = UPPER(#{id}))
+    AND readYn = 'N'
+  </select>
+  <select id="selectUnreadCompleteCountById" resultType="Integer">
+    SELECT COUNT(appDocNo) as unreadCompleteCount
+    FROM APPBOXCOMPLETEDRAFT
+    WHERE userNo =
+    (SELECT userNo
+    FROM USERBASE
+    WHERE COMPANYNUM = UPPER(#{id}))
+    AND readYn = 'N'
+  </select>
+  <select id="selectInApprovalCountById" resultType="Integer">
+    SELECT COUNT(box.appDocNo) as inApprovalCount
+    FROM APPBOXINAPPROVAL box,
+    APPDOCREPOSITORY adr
+    WHERE box.appDocNo = adr.appDocNo
+    AND box.userNo =
+    (SELECT userNo
+    FROM userbase
+    WHERE companyNum = UPPER(#{id}));
+  </select>
+</mapper>

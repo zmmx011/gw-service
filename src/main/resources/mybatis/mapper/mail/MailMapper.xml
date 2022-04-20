@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.invenia.gwservice.api.mail.MailMapper">
+  <select id="selectUnreadMailCountById" resultType="Integer">
+    SELECT SUM(newMailCnt) as newMailCount
+    FROM MAILBOX
+    WHERE mailUserNo IN
+    (SELECT mailuserNo
+    FROM USERBASEMAILUSER
+    WHERE userNo =
+    (SELECT userNo
+    FROM userbase
+    WHERE companyNum = UPPER(#{id})))
+    AND tblName =
+    (SELECT tblName
+    FROM MAILUSERTABLE
+    WHERE mailUserNo IN
+    (SELECT mailuserNo
+    FROM USERBASEMAILUSER
+    WHERE userNo =
+    (SELECT userNo
+    FROM userbase
+    WHERE companyNum = UPPER(#{id})))
+    AND baseTable = 'Y')
+    AND (mailBoxNo = 'RECV_BOX' OR baseMailBox = 'N')
+  </select>
+</mapper>
