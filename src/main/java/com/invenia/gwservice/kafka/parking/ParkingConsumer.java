@@ -7,6 +7,8 @@ import com.invenia.gwservice.kafka.common.Topic;
 import com.invenia.gwservice.mattermost.AttachmentsItem;
 import com.invenia.gwservice.mattermost.Message;
 import com.invenia.gwservice.mattermost.Props;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
@@ -32,7 +34,13 @@ public class ParkingConsumer extends AbstractConsumerSeekAware {
       log.error(e.getMessage(), e);
     }
 
-    sendParkingControlMessage(topic.getPayload());
+    ParkingPayload payload = topic.getPayload();
+
+    if (LocalDate.ofInstant(payload.getRegisterDate().toInstant(), ZoneId.systemDefault()).isBefore(LocalDate.now())) {
+      return;
+    }
+
+    sendParkingControlMessage(payload);
   }
 
   private void sendParkingControlMessage(ParkingPayload payload) {

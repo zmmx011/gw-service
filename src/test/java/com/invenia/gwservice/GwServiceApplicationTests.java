@@ -3,22 +3,14 @@ package com.invenia.gwservice;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.invenia.gwservice.api.board.Board;
-import com.invenia.gwservice.api.board.BoardService;
 import com.invenia.gwservice.kafka.common.Topic;
 import com.invenia.gwservice.kafka.parking.ParkingPayload;
 import com.invenia.gwservice.mattermost.AttachmentsItem;
 import com.invenia.gwservice.mattermost.Message;
 import com.invenia.gwservice.mattermost.Props;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.util.Properties;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.http.client.reactive.ReactorClientHttpConnector;
 import org.springframework.test.context.ActiveProfiles;
@@ -26,28 +18,9 @@ import org.springframework.web.reactive.function.client.WebClient;
 import reactor.netty.http.client.HttpClient;
 
 @ActiveProfiles("test")
-@SpringBootTest(classes = GwServiceApplication.class, properties = {"spring.cloud.config.discovery.enabled:false"})
 class GwServiceApplicationTests {
 
   Logger log = LoggerFactory.getLogger(GwServiceApplicationTests.class);
-
-  @Autowired
-  BoardService boardService;
-
-  @Test
-  void test() throws SQLException {
-    Properties properties = new Properties();
-    properties.setProperty("user", "g2");
-    properties.setProperty("password", "g2");
-    DriverManager.setLoginTimeout(40);
-    Connection connection = DriverManager.getConnection("jdbc:Altibase://100.100.10.72:10003/mydb", properties);
-  }
-
-  @Test
-  void mybatisTest() {
-    Board board = boardService.selectByPrimaryKey(64819, 5);
-    System.out.println(board);
-  }
 
   @Test
   void sendParkingControlMessageTest() {
