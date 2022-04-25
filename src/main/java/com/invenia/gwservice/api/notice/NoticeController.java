@@ -5,6 +5,7 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,7 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("gw-service/v1/notice")
+@RequestMapping("/notice")
+@CrossOrigin("http://localhost:3000")
 public class NoticeController {
 
   private final NoticeService noticeService;
@@ -21,6 +23,4 @@ public class NoticeController {
   public ResponseEntity<List<Notice>> get(Criteria criteria) {
     return ResponseEntity.ok().body(noticeService.selectAllByCriteria(criteria));
   }
-
-
 }
