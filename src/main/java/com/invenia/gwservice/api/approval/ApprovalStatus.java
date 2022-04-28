@@ -1,4 +1,4 @@
-package com.invenia.gwservice.api.approval.dto;
+package com.invenia.gwservice.api.approval;
 
 import lombok.Builder;
 import lombok.Data;

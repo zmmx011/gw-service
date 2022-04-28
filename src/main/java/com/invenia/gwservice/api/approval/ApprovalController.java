@@ -1,6 +1,5 @@
 package com.invenia.gwservice.api.approval;
 
-import com.invenia.gwservice.api.approval.dto.ApprovalStatus;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
