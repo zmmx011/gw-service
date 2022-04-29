@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.invenia.gwservice.api.eventlog.EventLogMapper">
+  <resultMap id="BaseResultMap" type="com.invenia.gwservice.api.eventlog.EventLog">
+    <!--@Table GWEVENTLOG-->
+    <id column="NO" property="no"/>
+    <result column="USERNO" property="userNo"/>
+    <result column="EVENTCODE" property="eventCode"/>
+    <result column="EVENTDATA1" property="eventData1"/>
+    <result column="EVENTDATA2" property="eventData2"/>
+    <result column="EVENTTITLERESID" property="eventTitleResId"/>
+    <result column="EVENTTITLEDATA1" property="eventTitleData1"/>
+    <result column="EVENTTITLEDATA2" property="eventTitleData2"/>
+    <result column="REGDATE" property="regDate"/>
+    <result column="MENUNO" property="menuNo"/>
+    <result column="READYN" property="readYN"/>
+    <result column="COMPANYNUM" property="companyNum"/>
+  </resultMap>
+  <select id="findAllUnreadEventsById" resultMap="BaseResultMap">
+    SELECT log.*, LOWER(base.COMPANYNUM) as COMPANYNUM
+    FROM GWEVENTLOG log
+    JOIN USERBASE base
+    ON log.USERNO = base.USERNO
+    WHERE LOWER(base.COMPANYNUM) = #{companyNum}
+    AND log.READYN = 'N'
+  </select>
+
+  <sql id="Base_Column_List">
+    "NO",
+    USERNO,
+    EVENTCODE,
+    EVENTDATA1,
+    EVENTDATA2,
+    EVENTTITLERESID,
+    EVENTTITLEDATA1,
+    EVENTTITLEDATA2,
+    REGDATE,
+    MENUNO,
+    READYN
+  </sql>
+</mapper>
+
