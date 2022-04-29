@@ -63,6 +63,11 @@ logging:
           client:
             HttpClient: DEBUG
 
+destinations:
+  topics:
+    notify:
+      exchange: notify
+
 ---
 # Test settings
 spring:
