@@ -66,11 +66,6 @@ logging:
       springframework:
         security: DEBUG
 
-destinations:
-  topics:
-    notify:
-      exchange: notify
-
 ---
 # Test settings
 spring:
