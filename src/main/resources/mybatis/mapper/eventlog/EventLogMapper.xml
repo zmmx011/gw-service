@@ -16,13 +16,15 @@
     <result column="READYN" property="readYN"/>
     <result column="COMPANYNUM" property="companyNum"/>
   </resultMap>
-  <select id="findAllUnreadEventsById" resultMap="BaseResultMap">
+  <select id="findAllUnreadEventsByIdWithCriteria" resultMap="BaseResultMap">
     SELECT log.*, LOWER(base.COMPANYNUM) as COMPANYNUM
     FROM GWEVENTLOG log
     JOIN USERBASE base
     ON log.USERNO = base.USERNO
     WHERE LOWER(base.COMPANYNUM) = #{companyNum}
     AND log.READYN = 'N'
+    ORDER BY log.NO ${criteria.sortBy}
+    LIMIT ${criteria.offset}, ${criteria.limit}
   </select>
 
   <sql id="Base_Column_List">

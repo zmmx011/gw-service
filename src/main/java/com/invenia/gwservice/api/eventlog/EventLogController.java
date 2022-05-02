@@ -1,5 +1,6 @@
 package com.invenia.gwservice.api.eventlog;
 
+import com.invenia.gwservice.api.common.Criteria;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,9 +24,9 @@ public class EventLogController {
 
   @GetMapping("/{id}")
   @PreAuthorize("(principal.getClaimAsString('preferred_username') == #id ) or hasRole('admin')")
-  public ResponseEntity<List<EventLog>> getUnreadEvents(@PathVariable String id) {
+  public ResponseEntity<List<EventLog>> getUnreadEvents(@PathVariable String id, Criteria criteria) {
     return eventLogService
-        .findAllUnreadEventsById(id)
+        .findAllUnreadEventsByIdWithCriteria(id, criteria)
         .map(eventLog -> ResponseEntity.ok().body(eventLog))
         .orElse(ResponseEntity.notFound().build());
   }
