@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/notice")
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin("http://localhost:3000, https://portal.inveniacorp.com")
 public class NoticeController {
 
   private final NoticeService noticeService;
