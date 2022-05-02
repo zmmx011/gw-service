@@ -33,6 +33,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .jwt(jwt -> jwt
                 .jwtAuthenticationConverter(jwtAuthenticationConverter())
             )
-        );
+        )
+        .csrf().disable();
   }
 }
