@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/event-log")
+@RequestMapping("/gw-service/v1/event-log")
 public class EventLogController {
 
   private final EventLogService eventLogService;

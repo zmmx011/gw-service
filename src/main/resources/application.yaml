@@ -1,11 +1,10 @@
 # Default settings
 server:
   port: 8011
+  servlet:
+    context-path: /resource
 
 spring:
-  mvc:
-    servlet:
-      path: /gw-service/v1
   config:
     import: "optional:configserver:http://configserver:8888"
   application:

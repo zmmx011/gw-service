@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/notice")
+@RequestMapping("/gw-service/v1/notice")
 public class NoticeController {
 
   private final NoticeService noticeService;

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/approval")
+@RequestMapping("/gw-service/v1/approval")
 public class ApprovalController {
 
   private final ApprovalService approvalService;
