@@ -1,10 +1,11 @@
-package com.invenia.gwservice.security;
+package com.invenia.gwservice.config;
 
 import java.util.Arrays;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
@@ -31,7 +32,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   CorsConfigurationSource corsConfigurationSource() {
     CorsConfiguration configuration = new CorsConfiguration();
     configuration.setAllowCredentials(true);
-    configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000", "https://portal.inveniacorp.com"));
+    configuration.setAllowedOrigins(
+        Arrays.asList("http://localhost:3000", "http://localhost:8011", "https://portal.inveniacorp.com"));
     configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH", "OPTIONS", "DELETE"));
     UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
     source.registerCorsConfiguration("/**", configuration);
@@ -52,5 +54,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             )
         )
         .csrf().disable();
+  }
+
+  @Override
+  public void configure(WebSecurity web) {
+    web.ignoring().antMatchers("/swagger-ui/**", "/bus/v3/api-docs/**");
   }
 }

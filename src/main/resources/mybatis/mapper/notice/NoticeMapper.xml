@@ -34,8 +34,19 @@
     from NOTICE
     where BOARDINFONO = '1'
     and BOARDNO in (select BOARDNO from NOTICEADMISSIONBOX where STAT = 'A' and NOTICE.BOARDINFONO = '1')
-    order by BOARDNO ${sortBy}
-    limit ${offset}, ${limit}
+    <if test="sortBy != null">
+      order by BOARDNO #{sortBy}
+    </if>
+    <if test="limit != null">
+      <choose>
+        <when test="offset != null">
+          limit ${offset}, ${limit}
+        </when>
+        <otherwise>
+          limit 0, ${limit}
+        </otherwise>
+      </choose>
+    </if>
   </select>
   <sql id="Base_Column_List">
     BOARDNO,
