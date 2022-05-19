@@ -67,13 +67,18 @@ springdoc:
   default-consumes-media-type: application/json
   default-produces-media-type: application/json
   show-actuator: true
-  swagger-ui:
-    oauth:
-      clientId: spring-gateway-client
-      clientSecret: 746f79e6-5520-4943-8129-23ae42838d33
-  oAuthFlow:
-    authorizationUrl: https://sso.inveniacorp.com/auth/realms/service/protocol/openid-connect/auth
-    tokenUrl: https://sso.inveniacorp.com/auth/realms/service/protocol/openid-connect/token
+
+swagger:
+  projectTitle: '@project.name@'
+  projectVersion: '@project.version@'
+  projectDescription: '@project.description@'
+
+keycloak:
+  realm: service
+  authServerUrl: https://sso.inveniacorp.com/auth
+  sslRequired: external
+  resource: enterprise-portal
+
 ---
 # Test settings
 spring:
