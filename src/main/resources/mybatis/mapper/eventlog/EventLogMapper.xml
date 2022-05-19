@@ -23,8 +23,19 @@
     ON log.USERNO = base.USERNO
     WHERE LOWER(base.COMPANYNUM) = #{companyNum}
     AND log.READYN = 'N'
-    ORDER BY log.NO ${criteria.sortBy}
-    LIMIT ${criteria.offset}, ${criteria.limit}
+    <if test="sortBy != null">
+      order by log.NO #{sortBy}
+    </if>
+    <if test="limit != null">
+      <choose>
+        <when test="offset != null">
+          limit ${offset}, ${limit}
+        </when>
+        <otherwise>
+          limit 0, ${limit}
+        </otherwise>
+      </choose>
+    </if>
   </select>
 
   <sql id="Base_Column_List">

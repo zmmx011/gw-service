@@ -33,7 +33,7 @@ public class NoticeController {
   @ApiResponses(value = {
       @ApiResponse(responseCode = "200", description = "성공", content = {
           @Content(mediaType = "application/json", schema = @Schema(implementation = Notice.class))}),
-      @ApiResponse(responseCode = "400", description = "검색 조건 누락", content = @Content),
+      @ApiResponse(responseCode = "400", description = "잘못된 요청", content = @Content),
       @ApiResponse(responseCode = "401", description = "인증되지 않음", content = @Content),
       @ApiResponse(responseCode = "403", description = "권한 없음", content = @Content)
   })

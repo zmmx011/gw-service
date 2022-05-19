@@ -1,6 +1,5 @@
 package com.invenia.gwservice.api.eventlog;
 
-import com.invenia.gwservice.api.common.Criteria;
 import java.util.List;
 import java.util.Optional;
 import javax.annotation.Resource;
@@ -12,7 +11,7 @@ public class EventLogService {
   @Resource
   private EventLogMapper eventLogMapper;
 
-  public Optional<List<EventLog>> findAllUnreadEventsByIdWithCriteria(String id, Criteria criteria) {
-    return Optional.of(eventLogMapper.findAllUnreadEventsByIdWithCriteria(id, criteria));
+  public Optional<List<EventLog>> findAllUnreadEventsByIdWithCriteria(String id, String sortBy, int offset, int limit) {
+    return Optional.of(eventLogMapper.findAllUnreadEventsByIdWithCriteria(id, sortBy, offset, limit));
   }
 }

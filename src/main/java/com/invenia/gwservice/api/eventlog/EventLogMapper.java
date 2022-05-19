@@ -1,6 +1,5 @@
 package com.invenia.gwservice.api.eventlog;
 
-import com.invenia.gwservice.api.common.Criteria;
 import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -9,5 +8,7 @@ import org.apache.ibatis.annotations.Param;
 public interface EventLogMapper {
 
   List<EventLog> findAllUnreadEventsByIdWithCriteria(@Param("companyNum") String companyNum,
-      @Param("criteria") Criteria criteria);
+      @Param("sortBy") String sortBy,
+      @Param("offset") int offset,
+      @Param("limit") int limit);
 }
