@@ -24,7 +24,7 @@
     WHERE LOWER(base.COMPANYNUM) = #{companyNum}
     AND log.READYN = 'N'
     <if test="sortBy != null">
-      order by log.NO #{sortBy}
+      order by log.NO ${sortBy}
     </if>
     <if test="limit != null">
       <choose>
